@@ -177,22 +177,52 @@ label sure_about_what:
         # be honest
         # lie
 
+    menu:
+        "Be honest.":
+            jump be_honest
+
+        "Lie":
+            jump lie
+
+
 label be_honest:
 
     me "Well, to be honest, you had the best available hours out of the candidates. But that doesn't mean you weren't qualified!"
 
 label lie:
     
+    $ vikki_points = 0
+
     me "You were the best!"
-    # variable lied = True
-    # vikki points += 1
+    
+    $ lied = True
+    
+    $ vikki_points += 1
     
     vikki "Anyway, do you have time to maybe quiz me?"
 
     # choices
         # yes
         # no
+menu:
+    
+    "Yes":
+        jump yes
 
-    # quiz 
+    "No":
+        jump no
+
+label yes:
+    
+    me "Is boba gluten-free?"
+    vikki "We only sell chicken and boba."
+    jump to_here
+
+label no:
+    
+    me "Sorry, maybe text time. I need to go have sex with my wife now"
+    vikki "What."
+
+label to_here:
 
     return
